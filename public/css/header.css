@@ -1,7 +1,7 @@
 .header {
     width: 1200px;
     background-color: #FF8000;
-    position: fixed;
+    position: absolute;
     height: auto;
 }
 .logo-header {
