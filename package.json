@@ -10,9 +10,12 @@
   "author": "Do Minh Thang",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",
     "express-hbs": "^2.1.2",
-    "handlebars": "^4.1.2"
+    "handlebars": "^4.1.2",
+    "json": "^9.0.6",
+    "pg": "^7.11.0"
   }
 }
