@@ -75,12 +75,12 @@ app.get("/", (req, res) => {
 });
 
 // ----------- Insert Product ----------------
-app.get("/admin/products/insert", (req, res) => {
+app.get("/admin/product/insert", (req, res) => {
   // getdata
   res.render("product.insert.ejs");
 })
 
-app.post("/admin/products/insert", urlencodedParser, (req, res) => {
+app.post("/admin/product/insert", urlencodedParser, (req, res) => {
   pool.connect((err, client, done) => {
     if(err) {
       console.log(err);
@@ -118,10 +118,27 @@ app.post("/admin/products/insert", urlencodedParser, (req, res) => {
 })
 
 // // ------------- Edit Product ----------------
-//
+
 // app.get()
 //
 // app.post()
-//
+
 // // ------------- Remove Product --------------
-//
+app.get("/admin/product/remove/:id_product", (req, res) => {
+  pool.connect(( err, client, done) => {
+    var id_product = req.params.id_product;
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+
+    let query = `DELETE FROM shop WHERE id_product = ${id_product}`;
+    client.query(query, (err, result) => {
+      done();
+      if (err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+      res.redirect("/admin/products/list");
+    })
+  })
+})
