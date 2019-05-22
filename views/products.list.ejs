@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>Shop</title>
-    <link rel="stylesheet" href="../static/css/header.css">
-    <link rel="stylesheet" href="../static/css/footer.css">
-    <link rel="stylesheet" href="../static/css/login.css">
-    <link rel="stylesheet" href="../static/css/style.homepage.css">
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <link rel="stylesheet" href="/static/css/style.homepage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   </head>.
 
@@ -19,7 +19,7 @@
       <div class="header">
         <div class="menu">
           <div class="logo">
-            <a href="https://messenger.com"><img src="../static/img/logo_2.png" alt="Logo shop"></a>
+            <a href="https://messenger.com"><img src="/static/img/logo_2.png" alt="Logo shop"></a>
           </div>
           <div class="menu-list">
             <ul>
@@ -58,7 +58,7 @@
             <td>Số lượng sản phẩm</td>
             <td>Đơn giá</td>
             <td>Mô tả sản phẩm</td>
-            <td><a href="../admin/products/insert">Thêm</a></td>
+            <td><a href="/admin/product/insert">Thêm</a></td>
           </tr>
 
         <% danhsach.rows.forEach(function(product){ %>
@@ -71,8 +71,8 @@
             <td><%= product.gia_moi_san_pham %></td>
             <td><%= product.mo_ta_san_pham %></td>
             <td>
-              <a href="../admin/product/edit/<%= product.id_product %>">Edit</a> -
-              <a href="../admin/product/remove/<%= product.id_product %>">Remove</a>
+              <a href="/admin/product/edit/<%= product.id_product %>">Edit</a> -
+              <a href="/admin/product/remove/<%= product.id_product %>">Remove</a>
             </td>
           </tr>
           <% }); %>
