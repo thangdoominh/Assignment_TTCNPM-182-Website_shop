@@ -50,7 +50,7 @@ app.get("/products/list", function(req, res){
         return console.error('error running query', err);
       }
       // console.log(result.rows[0].ten_mat_hang);
-      res.render("products.list.ejs", {danhsach:result})
+      res.render("products.list.ejs", {danhsach: result})
     });
   });
 });
@@ -74,4 +74,44 @@ app.get("/", (req, res) => {
 });
 
 // ----------- Insert Product ----------------
-// app.get
+app.get("/admin/products/insert", (req, res) => {
+  // getdata
+  res.render("product.insert.ejs");
+})
+
+app.post("/admin/products/insert", (req, res) => {
+  pool.connect((err, client, done) => {
+    if(err) {
+      console.log(err);
+    }
+
+    var ten_mat_hang = req.body.txt_ten_mat_hang;
+    var loai_mat_hang = req.body.txt_loai_mat_hang;
+    var so_luong_san_pham = req.body.txt_so_luong_san_pham;
+    var gia_moi_san_pham = req.body.txt_gia_moi_san_pham;
+    var mo_ta_san_pham = req.body.txt_mo_ta_san_pham;
+    var hinh_anh_san_pham = req.body.txt_hinh_anh_san_pham;
+
+    let query =`INSERT INTO shop(ten_mat_hang,
+       loai_mat_hang,
+       so_luong_san_pham,
+       gia_moi_san_pham,
+       mo_ta_san_pham,
+       hinh_anh_san_pham)
+       VALUES('${ten_mat_hang}',
+       '${loai_mat_hang}',
+       ${so_luong_san_pham},
+       ${gia_moi_san_pham},
+       '${mo_ta_san_pham}',
+       '/img/${hinh_anh_san_pham}')`;
+
+    client.query(query, (err, result) => {
+      done();
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+      res.redirect("../products/list");
+    })
+  })
+})

@@ -58,7 +58,7 @@
             <td>Số lượng sản phẩm</td>
             <td>Đơn giá</td>
             <td>Mô tả sản phẩm</td>
-            <td><a href="../products/add">Thêm</a></td>
+            <td><a href="../admin/products/insert">Thêm</a></td>
           </tr>
 
         <% danhsach.rows.forEach(function(product){ %>
@@ -71,8 +71,8 @@
             <td><%= product.gia_moi_san_pham %></td>
             <td><%= product.mo_ta_san_pham %></td>
             <td>
-              <a href="../products/edit/<%= product.id_product %>">Edit</a> -
-              <a href="../products/remove/<%= product.id_product %>">Remove</a>
+              <a href="../admin/product/edit/<%= product.id_product %>">Edit</a> -
+              <a href="../admin/product/remove/<%= product.id_product %>">Remove</a>
             </td>
           </tr>
           <% }); %>
