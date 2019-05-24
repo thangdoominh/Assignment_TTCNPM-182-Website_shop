@@ -148,24 +148,34 @@ app.post("/admin/product/edit/:id_product", urlencodedParser, (req, res) => {
       let gia_moi_san_pham = req.body.txt_gia_moi_san_pham;
       let mo_ta_san_pham = req.body.txt_mo_ta_san_pham;
       let hinh_anh_san_pham = req.body.txt_hinh_anh_san_pham;
+      let confirm = req.body.btn_confirm;
+      let cancel = req.body.btn_cancel;
 
-      console.log(req.body.id_product);
+      console.log(confirm);
+      console.log(cancel);
 
-      let query =`UPDATE shop SET ten_mat_hang = '${ten_mat_hang}',
-      loai_mat_hang = '${loai_mat_hang}',
-      so_luong_san_pham = ${so_luong_san_pham},
-      gia_moi_san_pham = ${gia_moi_san_pham},
-      mo_ta_san_pham = '${mo_ta_san_pham}',
-      hinh_anh_san_pham = '/static/img/${hinh_anh_san_pham}'
-      WHERE id_product = ${id_pro}`;
-      client.query(query, (err, result) => {
-        done();
-        if (err) {
-          res.end();
-          return console.error("Error running query", err);
-        }
+      if (confirm){
+        let query =`UPDATE shop SET ten_mat_hang = '${ten_mat_hang}',
+        loai_mat_hang = '${loai_mat_hang}',
+        so_luong_san_pham = ${so_luong_san_pham},
+        gia_moi_san_pham = ${gia_moi_san_pham},
+        mo_ta_san_pham = '${mo_ta_san_pham}',
+        hinh_anh_san_pham = '/static/img/${hinh_anh_san_pham}'
+        WHERE id_product = ${id_pro}`;
+        client.query(query, (err, result) => {
+          done();
+          if (err) {
+            res.end();
+            return console.error("Error running query", err);
+          }
+          res.redirect("/admin/products/list");
+        })
+      }
+
+      if (cancel){
         res.redirect("/admin/products/list");
-      })
+      }
+
     }
   })
 })

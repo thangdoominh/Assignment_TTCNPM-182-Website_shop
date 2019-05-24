@@ -19,7 +19,7 @@
       <div class="header">
         <div class="menu">
           <div class="logo">
-            <a href="https://messenger.com"><img src="/static/img/logo_2.png" alt="Logo shop"></a>
+            <a href="/"><img src="/static/img/logo_2.png" alt="Logo shop"></a>
           </div>
           <div class="menu-list">
             <ul>
@@ -71,8 +71,39 @@
             <td><%= product.gia_moi_san_pham %></td>
             <td><%= product.mo_ta_san_pham %></td>
             <td>
-              <a href="/admin/product/edit/<%= product.id_product %>">Edit</a> -
-              <a href="/admin/product/remove/<%= product.id_product %>">Remove</a>
+              <a href="/admin/product/edit/<%= product.id_product %>">Sửa</a> -
+              <a href="/admin/product/remove/<%= product.id_product %>">Xoá</a>
+
+
+              <!-- <div>
+                <button onclick="myFunction()">Remove</button>
+
+                <script>
+                function myFunction() {
+                  let comfirm = confirm("Press a button!");
+                  if(comfirm == true){
+                    // <a href="/admin/product/remove/<%= product.id_product %>"></a>
+                  }
+                  else {
+                    // <a href="/admin/products/list"></a>
+                  }
+                }
+                </script>
+
+                <!-- <button onclick="Remove_Product()">Remove</button>
+
+                <script>
+                function Remove_Product() {
+                  var r = confirm("Bạn có muốn xoá sản phẩm này không?");
+                  if (r == true) {
+                    <a href="/admin/product/remove/<%= product.id_product %>"></a>
+                  } else {
+                    <a href="/admin/products/list"></a>
+                  }
+                }
+                </script> -->
+
+
             </td>
           </tr>
           <% }); %>

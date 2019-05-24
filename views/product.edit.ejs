@@ -3,25 +3,75 @@
   <head>
     <meta charset="utf-8">
     <title>Sửa sản phẩm</title>
-  </head>
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
+    <link rel="stylesheet" href="/static/css/login.css">
+    <link rel="stylesheet" href="/static/css/style.homepage.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  </head>.
+
   <body>
 
-    <form  action="" method="POST" enctype="application/x-www-form-urlencoded">
-      <input type="hidden" name="txt_id_product" value="<%= product.id_product%>" >
-      <input type="text" name="txt_ten_mat_hang" value="<%= product.ten_mat_hang%>" placeholder="Tên mặt hàng">
-      <br>
-      <input type="text" name="txt_loai_mat_hang" value="<%= product.loai_mat_hang%>" placeholder="Loại mặt hàng">
-      <br>
-      <input type="text" name="txt_so_luong_san_pham" value="<%= product.so_luong_san_pham%>" placeholder="Số lượng mỗi sản phẩm">
-      <br>
-      <input type="text" name="txt_gia_moi_san_pham" value="<%= product.gia_moi_san_pham%>" placeholder="Giá mỗi sản phẩm">
-      <br>
-      <input type="text" name="txt_mo_ta_san_pham" value="<%= product.mo_ta_san_pham%>" placeholder="Mô tả sản phẩm">
-      <br>
-      Chọn hình ảnh: <input type="file" name="txt_hinh_anh_san_pham">
-      <br>
-      <input type="submit" name="btn_edit_product" value="Xác nhận">
-    </form>
+    <!-- CONTENT -->
+    <div class="container">
 
+      <!-- HEADER WEBSITE -->
+      <div class="header">
+        <div class="menu">
+          <div class="logo">
+            <a href="/"><img src="/static/img/logo_2.png" alt="Logo shop"></a>
+          </div>
+          <div class="menu-list">
+            <ul>
+              <li><a href="https://google.com">Quần</a></li>
+              <li><a href="https://google.com">Áo</a></li>
+              <li><a href="https://google.com">Giày</a></li>
+              <li><a href="https://google.com">Phụ kiện</a></li>
+              <li><a href="https://google.com">Khác</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="search-bar">
+          <div class="search-box">
+            <input type="text" placeholder="Tìm kiếm">
+          </div>
+          <div class="search-btn">
+            <a href="https://google.com">
+              <i class="fas fa-search" ></i>
+            </a>
+          </div>
+        </div>
+
+
+      </div>
+
+      <!-- body -->
+      <div style="padding-top: 100px">
+        <form  action="" method="POST" enctype="application/x-www-form-urlencoded">
+          <input type="hidden" name="txt_id_product" value="<%= product.id_product%>" >
+          <input type="text" name="txt_ten_mat_hang" value="<%= product.ten_mat_hang%>" placeholder="Tên mặt hàng">
+          <br>
+          <input type="text" name="txt_loai_mat_hang" value="<%= product.loai_mat_hang%>" placeholder="Loại mặt hàng">
+          <br>
+          <input type="text" name="txt_so_luong_san_pham" value="<%= product.so_luong_san_pham%>" placeholder="Số lượng mỗi sản phẩm">
+          <br>
+          <input type="text" name="txt_gia_moi_san_pham" value="<%= product.gia_moi_san_pham%>" placeholder="Giá mỗi sản phẩm">
+          <br>
+          <input type="text" name="txt_mo_ta_san_pham" value="<%= product.mo_ta_san_pham%>" placeholder="Mô tả sản phẩm">
+          <br>
+          Chọn hình ảnh: <input type="file" value="<%= product.hinh_anh_san_pham%>" name="txt_hinh_anh_san_pham">
+          <br>
+          <input type="submit" name="btn_confirm" value="Xác nhận">
+          <input type="submit" name="btn_cancel" value="Huỷ">
+        </form>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="footer">
+        <p>Footer</p>
+      </div>
+
+    </div>
   </body>
 </html>
