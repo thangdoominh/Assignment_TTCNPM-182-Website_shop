@@ -76,7 +76,6 @@ app.get("/", (req, res) => {
 
 // ----------- Insert Product ----------------
 app.get("/admin/product/insert", (req, res) => {
-  // getdata
   res.render("product.insert.ejs");
 })
 
@@ -119,9 +118,57 @@ app.post("/admin/product/insert", urlencodedParser, (req, res) => {
 
 // // ------------- Edit Product ----------------
 
-// app.get()
-//
-// app.post()
+app.get("/admin/product/edit/:id_product", (req, res) => {
+  pool.connect( (err, client, done) => {
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+    let id_pro = req.params.id_product;
+    let query = `SELECT * FROM shop WHERE id_product = ${id_pro}`;
+    client.query(query, (err, result) => {
+      done();
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+      res.render("product.edit.ejs", {product: result.rows[0]});
+    })
+  })
+})
+
+app.post("/admin/product/edit/:id_product", urlencodedParser, (req, res) => {
+  pool.connect( (err, client, done) => {
+    if (err) {
+      return console.log("Error fetching client from pool", err);
+    } else {
+      let id_pro = req.body.txt_id_product;
+      let ten_mat_hang = req.body.txt_ten_mat_hang;
+      let loai_mat_hang = req.body.txt_loai_mat_hang;
+      let so_luong_san_pham = req.body.txt_so_luong_san_pham;
+      let gia_moi_san_pham = req.body.txt_gia_moi_san_pham;
+      let mo_ta_san_pham = req.body.txt_mo_ta_san_pham;
+      let hinh_anh_san_pham = req.body.txt_hinh_anh_san_pham;
+
+      console.log(req.body.id_product);
+
+      let query =`UPDATE shop SET ten_mat_hang = '${ten_mat_hang}',
+      loai_mat_hang = '${loai_mat_hang}',
+      so_luong_san_pham = ${so_luong_san_pham},
+      gia_moi_san_pham = ${gia_moi_san_pham},
+      mo_ta_san_pham = '${mo_ta_san_pham}',
+      hinh_anh_san_pham = '/static/img/${hinh_anh_san_pham}'
+      WHERE id_product = ${id_pro}`;
+      client.query(query, (err, result) => {
+        done();
+        if (err) {
+          res.end();
+          return console.error("Error running query", err);
+        }
+        res.redirect("/admin/products/list");
+      })
+    }
+  })
+})
 
 // // ------------- Remove Product --------------
 app.get("/admin/product/remove/:id_product", (req, res) => {

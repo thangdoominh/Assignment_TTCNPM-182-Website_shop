@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Sửa sản phẩm</title>
+  </head>
+  <body>
+
+    <form  action="" method="POST" enctype="application/x-www-form-urlencoded">
+      <input type="hidden" name="txt_id_product" value="<%= product.id_product%>" >
+      <input type="text" name="txt_ten_mat_hang" value="<%= product.ten_mat_hang%>" placeholder="Tên mặt hàng">
+      <br>
+      <input type="text" name="txt_loai_mat_hang" value="<%= product.loai_mat_hang%>" placeholder="Loại mặt hàng">
+      <br>
+      <input type="text" name="txt_so_luong_san_pham" value="<%= product.so_luong_san_pham%>" placeholder="Số lượng mỗi sản phẩm">
+      <br>
+      <input type="text" name="txt_gia_moi_san_pham" value="<%= product.gia_moi_san_pham%>" placeholder="Giá mỗi sản phẩm">
+      <br>
+      <input type="text" name="txt_mo_ta_san_pham" value="<%= product.mo_ta_san_pham%>" placeholder="Mô tả sản phẩm">
+      <br>
+      Chọn hình ảnh: <input type="file" name="txt_hinh_anh_san_pham">
+      <br>
+      <input type="submit" name="btn_edit_product" value="Xác nhận">
+    </form>
+
+  </body>
+</html>
