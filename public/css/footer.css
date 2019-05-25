@@ -1,5 +1,5 @@
 .footer {
-  position: static;
+  position: fixed;
   bottom: 0;
   margin: 0px;
   background-color: red;

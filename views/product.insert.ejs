@@ -6,9 +6,14 @@
     <link rel="stylesheet" href="/static/css/header.css">
     <link rel="stylesheet" href="/static/css/footer.css">
     <link rel="stylesheet" href="/static/css/login.css">
+    <link rel="stylesheet" href="/static/css/form.css">
     <link rel="stylesheet" href="/static/css/style.homepage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-  </head>.
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
 
   <body>
 
@@ -48,19 +53,38 @@
 
       <!-- body -->
       <div style="padding-top: 100px">
-        <form method="POST" enctype="application/x-www-form-urlencoded">
-          <input type="text" name="txt_ten_mat_hang" placeholder="Tên sản phẩm" />
-          <br>
-          <input type="text" name="txt_loai_mat_hang" placeholder="Loại mặt hàng" />
-          <br>
-          <input type="text" name="txt_so_luong_san_pham" placeholder="Số lượng mặt hàng" />
-          <br>
-          <input type="text" name="txt_gia_moi_san_pham" placeholder="Giá mỗi sản phẩm" />
-          <br>
-          <input type="text" name="txt_mo_ta_san_pham" placeholder="Mô tả sản phẩm" />
-          <br>
-          Chọn hình ảnh: <input type="file" name="txt_hinh_anh_san_pham"><br>
-          <input type="submit" name="btn_insert" value="Thêm" />
+        <form class="insertForm" method="POST" enctype="application/x-www-form-urlencoded">
+          <h3>Chỉnh sửa sản phẩm</h3>
+          <div class="inputProduct">
+            <input type="text" name="txt_ten_mat_hang" placeholder="Tên sản phẩm" />
+            <span><i class="fas fa-signature"></i></span>
+          </div>
+          <div class="inputProduct">
+            <input type="text" name="txt_loai_mat_hang" placeholder="Loại mặt hàng" />
+            <span><i class="fas fa-tags"></i></span>
+          </div>
+          <div class="inputProduct">
+            <input type="text" name="txt_so_luong_san_pham" placeholder="Số lượng mặt hàng" />
+            <span><i class="fa fa-cubes"></i></span>
+          </div>
+          <div class="inputProduct">
+            <input type="text" name="txt_gia_moi_san_pham" placeholder="Giá mỗi sản phẩm" />
+            <span><i class="fas fa-money-check-alt"></i></span>
+          </div>
+          <div class="inputProduct">
+            <input type="text" name="txt_mo_ta_san_pham" placeholder="Mô tả sản phẩm" />
+            <span><i class="fa fa-list-alt"></i></span>
+          </div>
+          <div class="inputProduct">
+            Chọn hình ảnh: <input type="file" name="txt_hinh_anh_san_pham">
+          </div>
+          <div class="conformProduct">
+            <input type="submit" name="btn_confirm" value="Thêm" />
+            <input type="submit" name="btn_cancel" value="Huỷ">
+          </div>
+
+
+
         </form>
       </div>
 

@@ -1,0 +1,65 @@
+.insertForm
+{
+  position: absolute;
+  top: 50% ;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  min-height: 200px;
+  padding: 40px;
+  box-sizing: border-box;
+}
+.f_product
+{
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.insertForm h3
+{
+  margin: 0;
+  padding: 0 0 20px;
+  color: red;
+}
+.insertForm input[type="text"]
+{
+  width: 100%;
+  margin-bottom: 20px;
+  border: none;
+  border-bottom: 2px solid #262626;
+  outline: : none;
+  height: 40px;
+  color: #262626;
+  background: transparent;
+  font-size: 18px;
+  padding-left: 30px;
+  box-sizing: border-box;
+}
+.insertForm input[type="text"]:focus
+{
+  border-bottom: 2px solid #f00;
+}
+.inputProduct
+{
+  position: relative;
+}
+.inputProduct span
+{
+  position: absolute;
+  top: 10px;
+  color: #262626;
+}
+.insertForm input[type="submit"]
+{
+  width: 100%;
+
+  border: none;
+  outline: none;
+  height: 40px;
+  font-size: 18px;
+  background: #ed292a;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+}
