@@ -89,7 +89,17 @@ app.get("/search", (req, res) => {
         res.end();
         return console.error('error running query', err);
       }
-      res.render("category.show.ejs", {danhsach: result})
+      // if(result !== {}){
+      //   res.render("category.show.ejs", {danhsach: result});
+      // }
+      // else{
+      //   res.render("error.ejs");
+      // }
+      if(result.length != 0) {
+        res.render("category.show.ejs", {danhsach: result});
+      } else {
+        res.render("error.ejs");
+      }
     });
   });
 });
