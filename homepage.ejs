@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Shop</title>
+    <link rel="stylesheet" href="static/css/header.css">
+    <link rel="stylesheet" href="static/css/footer.css">
+    <link rel="stylesheet" href="static/css/login.css">
+    <link rel="stylesheet" href="static/css/style.homepage.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  </head>
+
+  <body>
+
+    <!-- CONTENT -->
+    <div class="container">
+
+      <!-- HEADER WEBSITE -->
+      <div class="header">
+        <div class="menu">
+          <div class="logo">
+            <a href="/"><img src="static/img/logo_2.png" alt="Logo shop"></a>
+          </div>
+          <div class="menu-list">
+            <ul>
+              <li><a href="/category/bottom">Quần</a></li>
+              <li><a href="/category/upper">Áo</a></li>
+              <li><a href="/category/shoe">Giày</a></li>
+              <li><a href="/category/accessory">Phụ kiện</a></li>
+              <li><a href="/category/else">Khác</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="search-bar">
+          <form action="/search" class="search-from">
+            <input type="search" name="term" placeholder="Nhập từ khóa...">
+            <input type="submit" value="Tìm kiếm">
+          </form>
+        </div>
+
+        <div class="lio">
+          <div class="lio">
+            <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Đăng nhập</button>
+            <div id="id01" class="lio-modal">
+
+              <form class="lio-modal-content lio-animate" action="https://facebook.com">
+                <div>
+                  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                </div>
+
+                <div class="lio-container">
+                  <label for="uname"><b>Username</b></label>
+                  <input type="text" placeholder="Enter Username" name="uname" required>
+
+                  <label for="psw"><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password" name="psw" required>
+
+                  <button type="submit">Đăng nhập</button>
+                  <label>
+                    <input type="checkbox" checked="checked" name="remember"> Ghi nhớ đăng nhập
+                  </label>
+                </div>
+
+                <div class="lio-container" style="background-color:#f1f1f1">
+                  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="lio-cancelbtn">Cancel</button>
+                  <span class="psw">Forgot <a href="#">password?</a></span>
+                </div>
+              </form>
+            </div>
+          </div>
+          <script src="static/js/app.client.js">>
+
+          </script>
+        </div>
+
+      </div>
+
+      <!-- body -->
+      <div>
+        <!-- ____________Quang cao_______________- -->
+        <!-- <div class="slice">
+            <img width="1200px"src="/static/img/slider.jpg" alt="png">
+            <div class="left">
+                <h2><i>Free</i> Shipping</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. Ad fugiat exercitationem maiores quam fuga molestiae</p>
+            </div>
+            <div class="right">
+                <button class="hidden"><</button>
+                <button class="hidden">></button>
+            </div>
+        </div> -->
+        <!-- ____________  san pham  _______________ -->
+
+        <!-- <div class="listProduct">
+
+        <% danhsach.rows.forEach(function(product) { %>
+          <div class="_product">
+            <div class="_image">
+              <img src="<%= product.hinh_anh_san_pham%>">
+            </div>
+            <div class="contentProduct">
+              <h3> <%= product.ten_mat_hang %> </h3>
+              <p> <%= product.gia_moi_san_pham%> </p>
+            </div>
+          </div>
+        <% }); %> -->
+
+
+          <!-- <div class="_product">
+            <div class="_image">
+              <img src="static/img/4.jpg">
+            </div>
+            <div class="contentProduct">
+              <h3> Sơ mi caro </h3>
+              <p> Giá: 250 000đ </p>
+            </div>
+          </div>
+
+
+          <div class="_product">
+            <div class="_image">
+              <img src="static/img/4.jpg">
+            </div>
+            <div class="contentProduct">
+              <h3> Sơ mi caro </h3>
+              <p> Giá: 250 000đ </p>
+            </div>
+          </div> -->
+
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="footer">
+        <p>Footer</p>
+      </div>
+
+    </div>
+  </body>
+</html>

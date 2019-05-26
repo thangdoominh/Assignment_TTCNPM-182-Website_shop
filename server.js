@@ -7,8 +7,8 @@ const port = 3000;
 
 const config = {
     user: 'postgres',
-    database: 'clothes',
-    password: '1',
+    database: 'sanpham',
+    password: 'Luu123456',
     host: 'localhost',
     port: 5432,
     max: 10,
@@ -43,7 +43,7 @@ app.get("/admin/products/list", function(req, res){
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query('SELECT * FROM shop ORDER BY id_product ASC', function(err, result) {
+    client.query('SELECT * FROM san_pham ORDER BY id_product ASC', function(err, result) {
       done();
 
       if(err) {
@@ -62,7 +62,7 @@ app.get("/", (req, res) => {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query('SELECT * FROM shop ORDER BY id_product ASC', (err, result) => {
+    client.query('SELECT * FROM san_pham ORDER BY id_product ASC', (err, result) => {
       done();
 
       if(err) {
@@ -74,12 +74,124 @@ app.get("/", (req, res) => {
   });
 });
 
+
+// ----------- search as key ----------------------
+app.get("/search", (req, res) => {
+  const {term} = req.query;
+  pool.connect( (err, client, done) => {
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query('SELECT * FROM san_pham WHERE ten_mat_hang ILIKE $1',['%'+ term +'%'], (err, result) => {
+      done();
+
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+      res.render("category.show.ejs", {danhsach: result})
+    });
+  });
+});
+
+// ----------- Search as category ---------------
+
+// ============================Áo===============================
+app.get("/category/upper", (req, res) => {
+  pool.connect( (err, client, done) => {
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query("select * from san_pham where loai_mat_hang ilike '%áo%'", (err, result) => {
+      done();
+
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+      res.render("category.show.ejs", {danhsach: result})
+    });
+  });
+});
+
+// =============================Quần======================
+app.get("/category/bottom", (req, res) => {
+  pool.connect( (err, client, done) => {
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query("select * from san_pham where loai_mat_hang ilike '%quần%'", (err, result) => {
+      done();
+
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+      res.render("category.show.ejs", {danhsach: result})
+    });
+  });
+});
+// =============================Giày========================
+app.get("/category/shoe", (req, res) => {
+  pool.connect( (err, client, done) => {
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query("select * from san_pham where loai_mat_hang ilike '%giày%'", (err, result) => {
+      done();
+
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+      res.render("category.show.ejs", {danhsach: result})
+    });
+  });
+});
+
+// ==============================Phụ kiện=====================
+app.get("/category/accessory", (req, res) => {
+  pool.connect( (err, client, done) => {
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query("select * from san_pham where loai_mat_hang ilike '%phụ kiện%'", (err, result) => {
+      done();
+
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+      res.render("category.show.ejs", {danhsach: result})
+    });
+  });
+});
+
+// ==================================Khác=================================
+app.get("/category/else", (req, res) => {
+  pool.connect( (err, client, done) => {
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query("select * from san_pham where loai_mat_hang ilike '%khác%'", (err, result) => {
+      done();
+
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+      res.render("category.show.ejs", {danhsach: result})
+    });
+  });
+});
+
 // ----------- Insert Product ----------------
-app.get("/admin/product/insert", (req, res) => {
+app.get("/admin/products/insert", (req, res) => {
+  // getdata
   res.render("product.insert.ejs");
 })
 
-app.post("/admin/product/insert", urlencodedParser, (req, res) => {
+app.post("/admin/products/insert", urlencodedParser, (req, res) => {
   pool.connect((err, client, done) => {
     if(err) {
       console.log(err);
@@ -91,117 +203,36 @@ app.post("/admin/product/insert", urlencodedParser, (req, res) => {
     let gia_moi_san_pham = req.body.txt_gia_moi_san_pham;
     let mo_ta_san_pham = req.body.txt_mo_ta_san_pham;
     let hinh_anh_san_pham = req.body.txt_hinh_anh_san_pham;
-    let confirm = req.body.btn_confirm;
-    let cancel = req.body.btn_cancel;
 
-    if(confirm) {
-      let query =`INSERT INTO shop(ten_mat_hang,
-         loai_mat_hang,
-         so_luong_san_pham,
-         gia_moi_san_pham,
-         mo_ta_san_pham,
-         hinh_anh_san_pham)
-         VALUES('${ten_mat_hang}',
-         '${loai_mat_hang}',
-         ${so_luong_san_pham},
-         ${gia_moi_san_pham},
-         '${mo_ta_san_pham}',
-         '/static/img/${hinh_anh_san_pham}')`;
+    let query =`INSERT INTO san_pham(ten_mat_hang,
+       loai_mat_hang,
+       so_luong_san_pham,
+       gia_moi_san_pham,
+       mo_ta_san_pham,
+       hinh_anh_san_pham)
+       VALUES('${ten_mat_hang}',
+       '${loai_mat_hang}',
+       ${so_luong_san_pham},
+       ${gia_moi_san_pham},
+       '${mo_ta_san_pham}',
+       '/static/img/${hinh_anh_san_pham}')`;
 
-      client.query(query, (err, result) => {
-        done();
-        if(err) {
-          res.end();
-          return console.error('error running query', err);
-        }
-        res.redirect("/admin/products/list");
-      })
-    }
-
-    if(cancel) {
-      res.redirect("/admin/products/list");
-    }
-
-  })
-})
-
-// // ------------- Edit Product ----------------
-
-app.get("/admin/product/edit/:id_product", (req, res) => {
-  pool.connect( (err, client, done) => {
-    if(err) {
-      return console.error('error fetching client from pool', err);
-    }
-    let id_pro = req.params.id_product;
-    let query = `SELECT * FROM shop WHERE id_product = ${id_pro}`;
     client.query(query, (err, result) => {
       done();
       if(err) {
         res.end();
         return console.error('error running query', err);
       }
-      res.render("product.edit.ejs", {product: result.rows[0]});
-    })
-  })
-})
-
-app.post("/admin/product/edit/:id_product", urlencodedParser, (req, res) => {
-  pool.connect( (err, client, done) => {
-    if (err) {
-      return console.log("Error fetching client from pool", err);
-    } else {
-      let id_pro = req.body.txt_id_product;
-      let ten_mat_hang = req.body.txt_ten_mat_hang;
-      let loai_mat_hang = req.body.txt_loai_mat_hang;
-      let so_luong_san_pham = req.body.txt_so_luong_san_pham;
-      let gia_moi_san_pham = req.body.txt_gia_moi_san_pham;
-      let mo_ta_san_pham = req.body.txt_mo_ta_san_pham;
-      let hinh_anh_san_pham = req.body.txt_hinh_anh_san_pham;
-      let confirm = req.body.btn_confirm;
-      let cancel = req.body.btn_cancel;
-
-      if (confirm){
-        let query =`UPDATE shop SET ten_mat_hang = '${ten_mat_hang}',
-        loai_mat_hang = '${loai_mat_hang}',
-        so_luong_san_pham = ${so_luong_san_pham},
-        gia_moi_san_pham = ${gia_moi_san_pham},
-        mo_ta_san_pham = '${mo_ta_san_pham}',
-        hinh_anh_san_pham = '/static/img/${hinh_anh_san_pham}'
-        WHERE id_product = ${id_pro}`;
-        client.query(query, (err, result) => {
-          done();
-          if (err) {
-            res.end();
-            return console.error("Error running query", err);
-          }
-          res.redirect("/admin/products/list");
-        })
-      }
-
-      if (cancel){
-        res.redirect("/admin/products/list");
-      }
-
-    }
-  })
-})
-
-// // ------------- Remove Product --------------
-app.get("/admin/product/remove/:id_product", (req, res) => {
-  pool.connect(( err, client, done) => {
-    var id_product = req.params.id_product;
-    if(err) {
-      return console.error('error fetching client from pool', err);
-    }
-
-    let query = `DELETE FROM shop WHERE id_product = ${id_product}`;
-    client.query(query, (err, result) => {
-      done();
-      if (err) {
-        res.end();
-        return console.error('error running query', err);
-      }
       res.redirect("/admin/products/list");
     })
   })
 })
+
+// // ------------- Edit Product ----------------
+//
+// app.get()
+//
+// app.post()
+//
+// // ------------- Remove Product --------------
+//
