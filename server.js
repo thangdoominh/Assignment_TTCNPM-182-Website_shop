@@ -4,6 +4,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const express = require('express');
 const app = express();
 const port = 3000;
+global.name_1;
 
 const config = {
     user: 'postgres',
@@ -206,7 +207,8 @@ app.get("/search", (req, res) => {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query('SELECT * FROM shop WHERE ten_mat_hang ILIKE $1',['%'+ term +'%'], (err, result) => {
+    name_1 = term;
+    client.query('SELECT * FROM shop WHERE ten_mat_hang ILIKE $1',['%'+ name_1 +'%'], (err, result) => {
       done();
 
       if(err) {
@@ -301,20 +303,92 @@ app.get("/category/accessory", (req, res) => {
   });
 });
 
-// ==================================Khác=================================
-app.get("/category/else", (req, res) => {
+// //------------- List_View--------------------
+app.get("/list_view", (req, res) => {
   pool.connect( (err, client, done) => {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query("select * from shop where loai_mat_hang ilike '%khác%'", (err, result) => {
+    client.query('SELECT * FROM shop ORDER BY id_product ASC', (err, result) => {
       done();
 
       if(err) {
         res.end();
         return console.error('error running query', err);
       }
-      res.render("category.show.ejs", {danhsach: result})
+      res.render("view.list.ejs", {danhsach: result})
+    });
+  });
+});
+
+// // ------------ Grid_View--------------------
+app.get("/grid_view", (req, res) => {
+  pool.connect( (err, client, done) => {
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query('SELECT * FROM shop ORDER BY id_product ASC', (err, result) => {
+      done();
+
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+      res.render("view.grid.ejs", {danhsach: result})
+    });
+  });
+});
+
+//------------------show_details------------------
+app.get("/pro_:id", function(req, res) {
+  var id = req.params['id'];
+  pool.connect( (err, client, done) => {
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query('SELECT * FROM shop ORDER BY id_product ASC', (err, result) => {
+      done();
+
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+      res.render("show_details.ejs", {danhsach: result,
+                                      idx : id})
+    });
+  });
+});
+
+app.get("/list_view_search", (req, res) => {
+  pool.connect( (err, client, done) => {
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query('SELECT * FROM shop WHERE ten_mat_hang ILIKE $1',['%'+ name_1 +'%'], (err, result) => {
+      done();
+
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+      res.render("view.list.search.ejs", {danhsach: result})
+    });
+  });
+});
+
+app.get("/grid_view_search", (req, res) => {
+  pool.connect( (err, client, done) => {
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query('SELECT * FROM shop WHERE ten_mat_hang ILIKE $1',['%'+ name_1 +'%'], (err, result) => {
+      done();
+
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+      res.render("view.grid.search.ejs", {danhsach: result})
     });
   });
 });

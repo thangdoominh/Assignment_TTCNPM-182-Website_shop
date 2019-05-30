@@ -5,6 +5,7 @@
     <title>Shop</title>
     <link rel="stylesheet" href="static/css/header.css">
     <link rel="stylesheet" href="static/css/footer.css">
+    <link rel="stylesheet" href="static/css/list_grid.css">
     <link rel="stylesheet" href="static/css/login.css">
     <link rel="stylesheet" href="static/css/style.homepage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -23,21 +24,23 @@
           </div>
           <div class="menu-list">
             <ul>
-              <li><a href="/category/bottom">Quần</a></li>
-              <li><a href="/category/upper">Áo</a></li>
-              <li><a href="/category/shoe">Giày</a></li>
-              <li><a href="/category/accessory">Phụ kiện</a></li>
-              <li><a href="/category/else">Khác</a></li>
+              <li><a href="https://google.com">Quần</a></li>
+              <li><a href="https://google.com">Áo</a></li>
+              <li><a href="https://google.com">Giày</a></li>
+              <li><a href="https://google.com">Phụ kiện</a></li>
+              <li><a href="https://google.com">Khác</a></li>
             </ul>
           </div>
         </div>
 
         <div class="search-bar">
-          <div class="cover">
-            <form action="/search" class="search-from">
-              <input type="search" name="term" placeholder="Nhập từ khóa..." class="search-txt" required>
-              <button type="submit" class="search-button">Tìm kiếm</button>
-            </form>
+          <div class="search-box">
+            <input type="text" placeholder="Tìm kiếm">
+          </div>
+          <div class="search-btn">
+            <a href="https://google.com">
+              <i class="fas fa-search" ></i>
+            </a>
           </div>
         </div>
 
@@ -77,38 +80,46 @@
         </div>
 
       </div>
+    </div>
 
-  <!-- ____________  view_option  _______________ -->
-      <div class="bar_view">
-        <div class="container">
-          <div class="icon">
-            <a href="http://localhost:3000/list_view"><img src="/static/img/list_view.png"></a>
-            <a href="http://localhost:3000/grid_view"><img src="/static/img/grid_view.png"></a>
-          </div>
-        </div>
-      </div>
+    <!-- ____________  view_option  _______________ -->
 
-  <!-- ____________  san pham  _______________ -->
-      <div class="listProduct">
-        <div class="container">
-          <% for (var i = 0; i < danhsach.rows.length; i++) { %>
-            <div class="_product">
-              <div class="_image">
-                <a href="/pro_<%= danhsach.rows[i].id_product %>">
-                  <%var x = danhsach.rows[i].id_product %>
-                  <img src="<%= danhsach.rows[i].hinh_anh_san_pham%>">
-                </a>
-              </div>
-              <div class="contentProduct">
-                <h3> <%= danhsach.rows[i].ten_mat_hang %> </h3>
-              </div>
-              <div class="price">
-                <p> <%= danhsach.rows[i].gia_moi_san_pham%> đ </p>
-              </div>
-            </div>
-          <% } %>
+    <div class="bar_view">
+      <div class="container">
+        <div class="icon">
+          <a href="http://localhost:3000/list_view_search"><img src="/static/img/list_view.png"></a>
+          <a href="http://localhost:3000/grid_view_search"><img src="/static/img/grid_view.png"></a>
         </div>
       </div>
     </div>
+    <!-- ____________ view_option  _______________ -->
+
+
+
+    <!-- ____________ list_view  _______________ -->
+    <div class="listProduct">
+
+      <% for (var i = 0; i < danhsach.rows.length; i++) { %>
+      <div class="_container">
+        <div class="__product">
+          <div class="_image">
+            <a href="/pro_<%= danhsach.rows[i].id_product %>"> <img src="<%= danhsach.rows[i].hinh_anh_san_pham%>"></a>
+          </div>
+        </div>
+        <div class="list_ten">
+          <h3> <%= danhsach.rows[i].ten_mat_hang %> </h3>
+        </div>
+        <div class="list_gia_tien">
+          <p>Giá: <%= danhsach.rows[i].gia_moi_san_pham %> đ </p>
+        </div>
+        <div class="list_mo_ta">
+          <p> Mô tả sản phẩm: </p>
+          <p> <%= danhsach.rows[i].mo_ta_san_pham %> </p>
+        </div>
+      </div>
+        <% } %>
+    </div> <!-- san pham-->
+
+
   </body>
 </html>

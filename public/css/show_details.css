@@ -1,0 +1,96 @@
+._list_ten{
+  position: relative;
+  left:600px;
+  bottom:600px;
+  font-size: 30px;
+}
+._list_mo_ta{
+  position: relative;
+  width: 400px;
+  left:600px;
+  bottom:600px;
+  font-size: 26px;
+  color: none;
+  font-weight: bold;
+}
+._list_gia_tien{
+  position: relative;
+  color: red;
+  font-weight: bold;
+  left:600px;
+  bottom:600px;
+  font-size: 30px;
+}
+._1_container{
+  width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  height: 600px;
+  border: 1px solid black;
+}
+._1_product {
+  background-color: #f1f0f1;
+  margin: 10px;
+  padding: 10px;
+  font-size: 30px;
+  width: 45%;
+  display: inline-block;
+  height: 570px;
+  border: 1px solid black;
+}
+._1_image{
+  width: 500px;
+  height: 500px;
+  alt: png;
+  position: relative;
+  left: 25px;
+}
+
+._1_image img{
+  width: 500px;
+  height: 550px;
+  alt: png;
+  position: relative;
+  right: 10px;
+}
+._list_trang_thai{
+  position: relative;
+  left:480px;
+  bottom:575px;
+  font-size: 26px;
+}
+._list_id{
+  position: relative;
+  color: blue;
+  left:600px;
+  bottom:600px;
+  font-size: 25px;
+}
+._noi_sx{
+  position: relative;
+  left:480px;
+  bottom:575px;
+  font-size: 26px;
+}
+._so_luong{
+  position: relative;
+  left:600px;
+  bottom:575px;
+  font-size: 26px;
+}
+.button1{
+  position: relative;
+  left:600px;
+  bottom:450px;
+  background-color: orange;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+}
