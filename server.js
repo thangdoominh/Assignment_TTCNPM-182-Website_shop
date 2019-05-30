@@ -719,3 +719,18 @@ app.get("/admin/xoaqc/:id", function(req, res){
     });
   });
 })
+
+//-----------------link trang khuyến mãi----------------------------------------
+app.get("/admin/khuyenmai:id", function(req, res){
+  pool.connect(function(err, client, done){
+    var  id = req.params.id;
+    if(err){
+      return console.error('error fetching client from pool', err);
+    }
+      if(err){
+        res.end();
+        return console.error('error runing query', err);
+      }
+      res.render("khuyenmai"+id+"");
+    });
+  });
