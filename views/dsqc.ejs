@@ -47,7 +47,7 @@
       <% danhsach.rows.forEach(function(sv){ %>
       <tr>
         <td><%= sv.id %></td>
-        <td><img src="../../img/<%=sv.img %>"width="250" height="250"></td>
+        <td><img src="/static/img/<%=sv.img %>"width="250" height="250"></td>
         <td><a href= "<%= sv.link %>" ><%= sv.link %></a></td>
         <td>
           <a href="../admin/suaqc/<%= sv.id %>">sửa</a>

@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>Shop</title>
   <link rel="stylesheet" href="/static/css/header.css">
+  <link rel="stylesheet" href="/static/css/list_grid.css">
   <link rel="stylesheet" href="/static/css/footer.css">
   <link rel="stylesheet" href="/static/css/login.css">
   <link rel="stylesheet" href="/static/css/style.homepage.css">
@@ -94,14 +95,16 @@
         <% for (var i = 0; i < danhsach.rows.length; i++) {%>
           <div class="_product">
             <div class="_image">
-              <a href="/pro_<%= danhsach.rows[i].id_product%>">
+              <a href="/pro_<%= danhsach.rows[i].id_product %>">
                 <%var x = danhsach.rows[i].id_product %>
-                <img src="<%= danhsach.rows[i].hinh_anh_san_pham%>" alt="png">
+                <img src="<%= danhsach.rows[i].hinh_anh_san_pham%>">
               </a>
             </div>
             <div class="contentProduct">
-              <h3><%= danhsach.rows[i].ten_mat_hang%></h3>
-              <p><%= danhsach.rows[i].gia_moi_san_pham%></p>
+              <h3> <%= danhsach.rows[i].ten_mat_hang %> </h3>
+            </div>
+            <div class="price">
+              <p> <%= danhsach.rows[i].gia_moi_san_pham%> đ </p>
             </div>
           </div>
           <% } %>

@@ -234,6 +234,7 @@ app.get("/search", (req, res) => {
 
 // ============================Áo===============================
 app.get("/category/upper", (req, res) => {
+  name_1 = 'áo';
   pool.connect( (err, client, done) => {
     if(err) {
       return console.error('error fetching client from pool', err);
@@ -245,13 +246,14 @@ app.get("/category/upper", (req, res) => {
         res.end();
         return console.error('error running query', err);
       }
-      res.render("category.show.ejs", {danhsach: result})
+      res.render("category.show_2.ejs", {danhsach: result})
     });
   });
 });
 
 // =============================Quần======================
 app.get("/category/bottom", (req, res) => {
+  name_1 = 'quần';
   pool.connect( (err, client, done) => {
     if(err) {
       return console.error('error fetching client from pool', err);
@@ -263,12 +265,13 @@ app.get("/category/bottom", (req, res) => {
         res.end();
         return console.error('error running query', err);
       }
-      res.render("category.show.ejs", {danhsach: result})
+      res.render("category.show_2.ejs", {danhsach: result})
     });
   });
 });
 // =============================Giày========================
 app.get("/category/shoe", (req, res) => {
+  name_1 = 'giày';
   pool.connect( (err, client, done) => {
     if(err) {
       return console.error('error fetching client from pool', err);
@@ -280,13 +283,14 @@ app.get("/category/shoe", (req, res) => {
         res.end();
         return console.error('error running query', err);
       }
-      res.render("category.show.ejs", {danhsach: result})
+      res.render("category.show_2.ejs", {danhsach: result})
     });
   });
 });
 
 // ==============================Phụ kiện=====================
 app.get("/category/accessory", (req, res) => {
+  name_1 = 'phụ';
   pool.connect( (err, client, done) => {
     if(err) {
       return console.error('error fetching client from pool', err);
@@ -298,12 +302,13 @@ app.get("/category/accessory", (req, res) => {
         res.end();
         return console.error('error running query', err);
       }
-      res.render("category.show.ejs", {danhsach: result})
+      res.render("category.show_2.ejs", {danhsach: result})
     });
   });
 });
 // ==================================Khác=================================
 app.get("/category/else", (req, res) => {
+  name_1 = 'khác';
   pool.connect( (err, client, done) => {
     if(err) {
       return console.error('error fetching client from pool', err);
@@ -315,7 +320,7 @@ app.get("/category/else", (req, res) => {
         res.end();
         return console.error('error running query', err);
       }
-      res.render("category.show.ejs", {danhsach: result})
+      res.render("category.show_2.ejs", {danhsach: result})
     });
   });
 });
@@ -409,6 +414,40 @@ app.get("/grid_view_search", (req, res) => {
     });
   });
 });
+
+app.get("/grid_view_category", (req, res) => {
+  pool.connect( (err, client, done) => {
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query('SELECT * FROM shop WHERE loai_mat_hang ILIKE $1',['%'+ name_1 +'%'], (err, result) => {
+      done();
+
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+      res.render("view.grid.category.ejs", {danhsach: result})
+    });
+  });
+});
+
+app.get("/list_view_category", (req, res) => {
+  pool.connect( (err, client, done) => {
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query('SELECT * FROM shop WHERE loai_mat_hang ILIKE $1',['%'+ name_1 +'%'], (err, result) => {
+      done();
+
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+      res.render("view.list.category.ejs", {danhsach: result})
+    });
+  });
+});
 //----------------------hiển thị list khuyến mãi--------------------------------
 app.get("/admin/listkm", function(req, res){
   pool.connect(function(err, client, done){
@@ -441,7 +480,7 @@ app.post("/admin/themkm", urlencodedParser, function(req, res){
     var gia = req.body.txt_gia;
     var ngaykt = req.body.txt_ngaykt;
     var a = req.body.txt_gia;
-    client.query(" INSERT INTO promotion(idsp, poster, link_nd, gia, ngaykt) VALUES('"+idsp+"', '"+poster+"', '"+linknd+"', '"+gia+"', '"+ngaykt+"');" , function(err, result){
+    client.query(" insert into promotion(idsp, poster, link_nd, gia, ngaykt) values('"+idsp+"', '"+poster+"', '"+linknd+"', '"+gia+"', '"+ngaykt+"');" , function(err, result){
       done();
       if(err){
         res.end();
@@ -449,20 +488,20 @@ app.post("/admin/themkm", urlencodedParser, function(req, res){
       }
     });
 
-    client.query(" UPDATE promotion SET giatruoc=shop.gia_moi_san_pham FROM  shop WHERE promotion.idsp=shop.id AND promotion.idsp='"+idsp+"' ;", function(err, result){
+    client.query(" update promotion set giatruoc=shop.gia_moi_san_pham from  shop where promotion.idsp = shop.id_product and promotion.idsp='"+idsp+"' ;", function(err, result){
       done();
       if(err){
         res.end();
         return console.error('error runing query', err);
       }
     });
-    client.query(" UPDATE shop SET gia_moi_san_pham = '"+gia+"' WHERE id= '"+idsp+"'", function(err, result){
+    client.query(" update shop set gia_moi_san_pham = '"+gia+"' where id_product= '"+idsp+"'", function(err, result){
       done();
       if(err){
         res.end();
         return console.error('error runing query', err);
       }
-    res.redirect("../admin/listkm");
+    res.redirect("/admin/listkm");
     });
   });
 });
@@ -473,7 +512,7 @@ app.get("/admin/sua/:id", function(req, res){
       return console.error('error fetching client from pool', err);
     }
     var id = req.params.id;
-    client.query("SELECT * FROM promotion WHERE id ='"+id+"';", function(err, result){
+    client.query("select * from promotion where id ='"+id+"';", function(err, result){
       done();
       if(err){
         res.end();
@@ -511,7 +550,7 @@ app.get("/admin/xoa/:id", function(req, res){
     }
     var  id = req.params.id;
 
-      client.query("UPDATE shop SET gia_moi_san_pham=promotion.giatruoc FROM  promotion WHERE promotion.idsp=shop.id AND promotion.id='"+id+"' ; ", function(err, result){
+      client.query("update shop set gia_moi_san_pham=promotion.giatruoc from  promotion where promotion.idsp=shop.id_product and promotion.id='"+id+"' ; ", function(err, result){
         done();
         if(err){
           res.end();
@@ -520,13 +559,13 @@ app.get("/admin/xoa/:id", function(req, res){
       });
 
 
-    client.query("DELETE FROM promotion WHERE id='"+id+"';  ", function(err, result){
+    client.query("delete from promotion where id='"+id+"';  ", function(err, result){
       done();
       if(err){
         res.end();
         return console.error('error runing query', err);
       }
-      res.redirect("../../admin/listkm");
+      res.redirect("/admin/listkm");
     });
   });
 });
@@ -537,7 +576,7 @@ app.get("/admin/listqc", function(req, res){
     if(err){
       return console.error('error fetching client from pool', err);
     }
-    client.query('SELECT * FROM quangcao ORDER BY id ASC;', function(err, result){
+    client.query('select * from quangcao order by id ASC;', function(err, result){
       done();
       if(err){
         res.end();
@@ -560,13 +599,13 @@ app.post("/admin/themqc", urlencodedParser, function(req, res){
     var img = req.body.txt_img;
     var link = req.body.txt_link;
     var a = req.body.txt_gia;
-    client.query(" INSERT INTO quangcao(img, link) VALUES('"+img+"', '"+link+"');" , function(err, result){
+    client.query(" insert into quangcao(img, link) values('"+img+"', '"+link+"');" , function(err, result){
       done();
       if(err){
         res.end();
         return console.error('error runing query', err);
       }
-      res.redirect("../../admin/themqc");
+      res.redirect("/admin/suaqc");
     });
   });
 });
@@ -578,7 +617,7 @@ app.get("/admin/suaqc/:id", function(req, res){
       return console.error('error fetching client from pool', err);
     }
     var id = req.params.id;
-    client.query("SELECT * FROM quangcao WHERE id ='"+id+"';", function(err, result){
+    client.query("select * from quangcao where id ='"+id+"';", function(err, result){
       done();
       if(err){
         res.end();
@@ -596,7 +635,7 @@ app.post("/admin/suaqc", urlencodedParser, function(req, res){
     var  id = req.body.txt_id;
     var img = req.body.txt_img;
     var link = req.body.txt_link;
-    client.query("UPDATE quangcao SET img ='"+img+"', link ='"+link+"' WHERE id='"+id+"' ; ", function(err, result){
+    client.query("update quangcao set img ='"+img+"', link ='"+link+"' where id='"+id+"' ; ", function(err, result){
       done();
       if(err){
         res.end();
@@ -615,7 +654,7 @@ app.get("/admin/xoaqc/:id", function(req, res){
     }
     var  id = req.params.id;
 
-    client.query("DELETE FROM quangcao WHERE id='"+id+"';  ", function(err, result){
+    client.query("delete from quangcao where id='"+id+"';  ", function(err, result){
       done();
       if(err){
         res.end();
@@ -633,10 +672,7 @@ app.get("/admin/khuyenmai:id", function(req, res){
     if(err){
       return console.error('error fetching client from pool', err);
     }
-      if(err){
-        res.end();
-        return console.error('error runing query', err);
-      }
+
       res.render("khuyenmai"+id+"");
     });
   });
