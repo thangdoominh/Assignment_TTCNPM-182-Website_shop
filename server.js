@@ -556,7 +556,6 @@ app.post("/admin/themkm", urlencodedParser, function(req, res){
         return console.error('error runing query', err);
       }
     });
-    });
     client.query(" UPDATE shop SET gia_moi_san_pham = '"+gia+"' WHERE id= '"+idsp+"'", function(err, result){
       done();
       if(err){
@@ -611,24 +610,17 @@ app.get("/admin/xoa/:id", function(req, res){
       return console.error('error fetching client from pool', err);
     }
     var  id = req.params.id;
-    client.query(" SELECT * FROM promotion WHERE id = '"+id+"' " , function(err, result){
-      done();
-      if(err){
-        res.end();
-        return console.error('error runing query', err);
-      }
-      var  a=result.rows[0].giatruoc;
-      var  b=result.rows[0].idsp;
-      client.query("UPDATE shop SET  gia_moi_san_pham ='"+a+"'WHERE id ='"+b+"' ", function(err, result){
+
+      client.query("UPDATE shop SET gia_moi_san_pham=promotion.giatruoc FROM  promotion WHERE promotion.idsp=shop.id AND promotion.id='"+id+"' ; ", function(err, result){
         done();
         if(err){
           res.end();
           return console.error('error runing query', err);
         }
       });
-    });
 
-    client.query("DELETE FROM promotion WHERE id='"+id+"'  ", function(err, result){
+
+    client.query("DELETE FROM promotion WHERE id='"+id+"';  ", function(err, result){
       done();
       if(err){
         res.end();
@@ -637,8 +629,8 @@ app.get("/admin/xoa/:id", function(req, res){
       res.redirect("../../admin/listkm");
     });
   });
-})
-1
+});
+
 //-----------------------list quảng cáo-----------------------------------------
 app.get("/admin/listqc", function(req, res){
   pool.connect(function(err, client, done){
