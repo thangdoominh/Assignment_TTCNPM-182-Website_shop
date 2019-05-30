@@ -535,21 +535,15 @@ app.post("/admin/themkm", urlencodedParser, function(req, res){
     var gia = req.body.txt_gia;
     var ngaykt = req.body.txt_ngaykt;
     var a = req.body.txt_gia;
-    client.query(" INSERT INTO promotion(idsp, poster, link_nd, gia, ngaykt) VALUES('"+idsp+"', '"+poster+"', '"+linknd+"', '"+gia+"', '"+ngaykt+"')" , function(err, result){
+    client.query(" INSERT INTO promotion(idsp, poster, link_nd, gia, ngaykt) VALUES('"+idsp+"', '"+poster+"', '"+linknd+"', '"+gia+"', '"+ngaykt+"');" , function(err, result){
       done();
       if(err){
         res.end();
         return console.error('error runing query', err);
       }
     });
-    client.query(" SELECT * FROM shop WHERE id = '"+idsp+"';" , function(err, result){
-      done();
-      if(err){
-        res.end();
-        return console.error('error runing query', err);
-      }
-    a=result.rows[0].gia_moi_san_pham;
-    client.query(" UPDATE promotion SET giatruoc = '"+a+"'WHERE idsp='"+idsp+"' ", function(err, result){
+
+    client.query(" UPDATE promotion SET giatruoc=shop.gia_moi_san_pham FROM  shop WHERE promotion.idsp=shop.id AND promotion.idsp='"+idsp+"' ;", function(err, result){
       done();
       if(err){
         res.end();
