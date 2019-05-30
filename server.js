@@ -238,7 +238,7 @@ app.get("/category/upper", (req, res) => {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query("select * from shop where loai_mat_hang ilike '%áo%'", (err, result) => {
+    client.query("select * from shop where loai_mat_hang ilike '%Áo%'", (err, result) => {
       done();
 
       if(err) {
@@ -256,7 +256,7 @@ app.get("/category/bottom", (req, res) => {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query("select * from shop where loai_mat_hang ilike '%quần%'", (err, result) => {
+    client.query("select * from shop where loai_mat_hang ilike '%Quần%'", (err, result) => {
       done();
 
       if(err) {
@@ -273,7 +273,7 @@ app.get("/category/shoe", (req, res) => {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query("select * from shop where loai_mat_hang ilike '%giày%'", (err, result) => {
+    client.query("select * from shop where loai_mat_hang ilike '%Giày%'", (err, result) => {
       done();
 
       if(err) {
@@ -291,7 +291,24 @@ app.get("/category/accessory", (req, res) => {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query("select * from shop where loai_mat_hang ilike '%phụ kiện%'", (err, result) => {
+    client.query("select * from shop where loai_mat_hang ilike '%Phụ%'", (err, result) => {
+      done();
+
+      if(err) {
+        res.end();
+        return console.error('error running query', err);
+      }
+      res.render("category.show.ejs", {danhsach: result})
+    });
+  });
+});
+// ==================================Khác=================================
+app.get("/category/else", (req, res) => {
+  pool.connect( (err, client, done) => {
+    if(err) {
+      return console.error('error fetching client from pool', err);
+    }
+    client.query("select * from shop where loai_mat_hang ilike '%khác%'", (err, result) => {
       done();
 
       if(err) {

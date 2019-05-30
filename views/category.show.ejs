@@ -80,9 +80,16 @@
       </div>
 
     </div>
+    <div class="bar_view">
+      <div class="container">
+        <div class="icon">
+          <a href="http://localhost:3000/list_view_search"><img src="/static/img/list_view.png"></a>
+          <a href="http://localhost:3000/grid_view_search"><img src="/static/img/grid_view.png"></a>
+        </div>
+      </div>
+    </div>
 
     <!-- body -->
-    <div style="padding-top: 100px">
       <% if(danhsach.rows.length != 0) {%>
         <% for (var i = 0; i < danhsach.rows.length; i++) {%>
           <div class="_product">
@@ -103,7 +110,6 @@
             <p>Không tìm thấy sản phẩm</p>
           </div>
         <% } %>
-      </div>
       <!-- FOOTER -->
       <div class="footer">
         <p>Footer</p>
