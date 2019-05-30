@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>sửa khuyến mãi</title>
+    <link rel="stylesheet" href="resources/css/header.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <div class="header">
+      <div class="menu">
+        <div class="logo">
+          <a style="width: 100%; background-color: #FF8000;  height: auto; display: inline-block;  margin: 0px 10px -20px 30px;" href="../../"><img src="https://scontent.fhan2-1.fna.fbcdn.net/v/t1.0-9/61622153_852275395123221_3242847716052566016_n.jpg?_nc_cat=108&_nc_oc=AQl8VQi3ZySDYTfmfegMeJTIqWSXjr_9R0iDrWolo3ekMFyiQ54521gYL728u51huxU&_nc_ht=scontent.fhan2-1.fna&oh=062eada5f3fc2e465737740011e61cfc&oe=5D5A1951" alt="Logo shop"></a>
+        </div>
+      </div>
+    </div>
+<form style="width: 1450px; margin: 0 auto; background-color: white; Margin-top: 50px" action="../../admin/sua" method="post" enctype="application/x-www-form-urlencoded">
+  <input type="hidden" name="txt_id" value="<%= sv.id %>"/>
+  link poster:<br>
+  <input type="text" name="txt_poster" value="<%= sv.poster %>"/><br/>
+  link nội dung:<br>
+  <input type="text" name="txt_linknd" value="<%= sv.link_nd %>"/><br/>
+  ngày kết thúc:<br>
+  <input type="date" name="txt_ngaykt" value="<%= sv.ngaykt %>"/><br/>
+
+  <input type="submit" name="sua" onclick="alert('Sửa khuyến mãi thành công!')" value=" sửa"/><br/>
+</form>
+  </body>
+</html>
