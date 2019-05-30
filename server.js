@@ -4,12 +4,9 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 const express = require('express');
 const app = express();
 const port = 3000;
-
 global.name_1;
 const config = {
     user: 'postgres',
-    database: 'sanpham',
-    password: 'Luu123456',
     database: 'postgres',
     password: 'yuuki93',
     host: 'localhost',
@@ -46,7 +43,6 @@ app.get("/admin/products/list", function(req, res){
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query('SELECT * FROM san_pham ORDER BY id_product ASC', function(err, result) {
     client.query('SELECT * FROM shop ORDER BY id_product ASC', function(err, result) {
       done();
 
@@ -78,10 +74,7 @@ app.get("/", (req, res) => {
   });
 });
 
-
 // ----------- search as key ----------------------
-app.get("/search", (req, res) => {
-  const {term} = req.query;
 app.get("/search",urlencodedParser ,(req, res) => {
   const{term} = req.query;
   name_1 = term;
@@ -89,24 +82,12 @@ app.get("/search",urlencodedParser ,(req, res) => {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query('SELECT * FROM san_pham WHERE ten_mat_hang ILIKE $1',['%'+ term +'%'], (err, result) => {
     client.query('SELECT * FROM shop WHERE ten_mat_hang ILIKE $1',['%'+ name_1 +'%'], (err, result) => {
       done();
 
       if(err) {
         res.end();
         return console.error('error running query', err);
-      }
-      // if(result !== {}){
-      //   res.render("category.show.ejs", {danhsach: result});
-      // }
-      // else{
-      //   res.render("error.ejs");
-      // }
-      if(result.length != 0) {
-        res.render("category.show.ejs", {danhsach: result});
-      } else {
-        res.render("error.ejs");
       }
       res.render("category.show.ejs", {danhsach: result,});
     });
@@ -143,7 +124,6 @@ app.get("/category/upper", (req, res) => {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query("select * from san_pham where loai_mat_hang ilike '%áo%'", (err, result) => {
     client.query("select * from shop where loai_mat_hang ilike '%áo%'", (err, result) => {
       done();
 
@@ -162,7 +142,6 @@ app.get("/category/bottom", (req, res) => {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query("select * from san_pham where loai_mat_hang ilike '%quần%'", (err, result) => {
     client.query("select * from shop where loai_mat_hang ilike '%quần%'", (err, result) => {
       done();
 
@@ -180,7 +159,6 @@ app.get("/category/shoe", (req, res) => {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query("select * from san_pham where loai_mat_hang ilike '%giày%'", (err, result) => {
     client.query("select * from shop where loai_mat_hang ilike '%giày%'", (err, result) => {
       done();
 
@@ -199,7 +177,6 @@ app.get("/category/accessory", (req, res) => {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query("select * from san_pham where loai_mat_hang ilike '%phụ kiện%'", (err, result) => {
     client.query("select * from shop where loai_mat_hang ilike '%phụ%'", (err, result) => {
       done();
 
@@ -218,7 +195,6 @@ app.get("/category/else", (req, res) => {
     if(err) {
       return console.error('error fetching client from pool', err);
     }
-    client.query("select * from san_pham where loai_mat_hang ilike '%khác%'", (err, result) => {
     client.query("select * from shop where loai_mat_hang ilike '%khác%'", (err, result) => {
       done();
 
@@ -232,13 +208,10 @@ app.get("/category/else", (req, res) => {
 });
 
 // ----------- Insert Product ----------------
-app.get("/admin/products/insert", (req, res) => {
-  // getdata
 app.get("/admin/product/insert", (req, res) => {
   res.render("product.insert.ejs");
 })
 
-app.post("/admin/products/insert", urlencodedParser, (req, res) => {
 app.post("/admin/product/insert", urlencodedParser, (req, res) => {
   pool.connect((err, client, done) => {
     if(err) {
@@ -252,7 +225,6 @@ app.post("/admin/product/insert", urlencodedParser, (req, res) => {
     let mo_ta_san_pham = req.body.txt_mo_ta_san_pham;
     let hinh_anh_san_pham = req.body.txt_hinh_anh_san_pham;
 
-    let query =`INSERT INTO san_pham(ten_mat_hang,
     let query =`INSERT INTO shop(ten_mat_hang,
        loai_mat_hang,
        so_luong_san_pham,
@@ -278,11 +250,6 @@ app.post("/admin/product/insert", urlencodedParser, (req, res) => {
 })
 
 // // ------------- Edit Product ----------------
-//
-// app.get()
-//
-// app.post()
-//
 
 app.get("/admin/product/edit/:id_product", (req, res) => {
   pool.connect( (err, client, done) => {
