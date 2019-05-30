@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="/static/css/footer.css">
     <link rel="stylesheet" href="/static/css/login.css">
     <link rel="stylesheet" href="/static/css/style.homepage.css">
+    <title>Shop</title>
+    <link rel="stylesheet" href="static/css/header.css">
+    <link rel="stylesheet" href="static/css/footer.css">
+    <link rel="stylesheet" href="static/css/login.css">
+    <link rel="stylesheet" href="static/css/style.homepage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   </head>
 
@@ -20,6 +25,7 @@
         <div class="menu">
           <div class="logo">
             <a href="https://messenger.com"><img src="/static/img/logo_2.png" alt="Logo shop"></a>
+            <a href="/"><img src="static/img/logo_2.png" alt="Logo shop"></a>
           </div>
           <div class="menu-list">
             <ul>
@@ -28,6 +34,11 @@
               <li><a href="https://google.com">Giày</a></li>
               <li><a href="https://google.com">Phụ kiện</a></li>
               <li><a href="https://google.com">Khác</a></li>
+              <li><a href="/category/bottom">Quần</a></li>
+              <li><a href="/category/upper">Áo</a></li>
+              <li><a href="/category/shoe">Giày</a></li>
+              <li><a href="/category/accessory">Phụ kiện</a></li>
+              <li><a href="/category/else">Khác</a></li>
             </ul>
           </div>
         </div>
@@ -40,10 +51,16 @@
             <a href="https://google.com">
               <i class="fas fa-search" ></i>
             </a>
+          <div class="cover">
+            <form action="/search" class="search-from">
+              <input type="search" name="term" placeholder="Nhập từ khóa..." class="search-txt" required>
+              <button type="submit" class="search-button">Tìm kiếm</button>
+            </form>
           </div>
         </div>
 
         <!-- <div class="lio">
+        <div class="lio">
           <div class="lio">
             <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Đăng nhập</button>
             <div id="id01" class="lio-modal">
@@ -77,6 +94,7 @@
 
           </script>
         </div> -->
+        </div>
 
       </div>
 
@@ -93,9 +111,37 @@
             <div class="right">
                 <button class="hidden"><</button>
                 <button class="hidden">></button>
+
+      <div class="bar_view">
+        <div class="container">
+          <div class="icon">
+            <a href="http://localhost:3000/list_view"><img src="/static/img/list_view.png"></a>
+            <a href="http://localhost:3000/grid_view"><img src="/static/img/grid_view.png"></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="listProduct">
+        <div class="container">
+          <% for (var i = 0; i < danhsach.rows.length; i++) { %>
+            <div class="_product">
+              <div class="_image">
+                <a href="/pro_<%= danhsach.rows[i].id_product %>">
+                  <%var x = danhsach.rows[i].id_product %>
+                  <img src="<%= danhsach.rows[i].hinh_anh_san_pham%>">
+                </a>
+              </div>
+              <div class="contentProduct">
+                <h3> <%= danhsach.rows[i].ten_mat_hang %> </h3>
+              </div>
+              <div class="price">
+                <p> <%= danhsach.rows[i].gia_moi_san_pham%> đ </p>
+              </div>
             </div>
+          <% } %>
         </div>
         <!-- ____________  san pham  _______________ -->
+      </div>
 
         <div class="listProduct">
 
@@ -110,15 +156,62 @@
             </div>
           </div>
         <% }); %>
+    </div>
 
+    <!-- ____________  view_option  _______________ -->
+
+    <!-- <div class="bar_view">
+      <div class="container">
+        <div class="icon">
+          <a href="http://localhost:3000/list_view"><img src="/static/img/list_view.png"></a>
+          <a href="http://localhost:3000/grid_view"><img src="/static/img/grid_view.png"></a>
         </div>
       </div>
+    </div> -->
+    <!-- ____________ view_option  _______________ -->
+
 
       <!-- FOOTER -->
       <div class="footer">
         <p>Footer</p>
+
+    <!-- ____________  san pham  _______________ -->
+    <!-- <div class="listProduct">
+    <div class="container">
+    <% danhsach.rows.forEach(function(product) { %>
+      <div class="_product">
+        <div class="_image">
+          <img src="<%= product.hinh_anh_san_pham%>">
+        </div>
+        <div class="contentProduct">
+          <h3> <%= product.ten_mat_hang %> </h3>
+          <p> <%= product.gia_moi_san_pham%> đ </p>
+        </div>
       </div>
 
+    <% }); %>
     </div>
+  </div> -->
+  <!-- <div class="listProduct">
+    <div class="container">
+      <% for (var i = 0; i < danhsach.rows.length; i++) { %>
+        <div class="_product">
+          <div class="_image">
+            <a href="/pro_<%= danhsach.rows[i].id_product %>">
+              <%var x = danhsach.rows[i].id_product %>
+              <img src="<%= danhsach.rows[i].hinh_anh_san_pham%>">
+            </a>
+          </div>
+          <div class="contentProduct">
+            <h3> <%= danhsach.rows[i].ten_mat_hang %> </h3>
+          </div>
+          <div class="price">
+            <p> <%= danhsach.rows[i].gia_moi_san_pham%> đ </p>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div> -->
+
   </body>
 </html>

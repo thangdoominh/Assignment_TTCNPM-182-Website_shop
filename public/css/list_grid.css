@@ -1,0 +1,41 @@
+.list_ten{
+  position: relative;
+  left:450px;
+  bottom:425px;
+  font-size: 30px;
+}
+.list_mo_ta{
+  position: relative;
+  left:450px;
+  bottom:375px;
+  font-size: 30px;
+
+}
+.list_gia_tien{
+  position: relative;
+  left:900px;
+  bottom:500px;
+  font-size: 30px;
+  color: red;
+  font-weight: bold;
+}
+._container{
+  width: 1200px;
+  height: 600px;
+  margin: 0 auto;
+  background-color: white;
+  height: 420px;
+  border: 1px solid black;
+}
+.__product{
+  position: relative;
+  right: 8px;
+  background-color: #f1f0f1;
+  margin: 10px;
+  padding: 10px;
+  font-size: 30px;
+  width: 29%;
+  height: 380px;
+  display: inline-block;
+  border: 1px solid black;
+}

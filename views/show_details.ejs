@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Shop</title>
+    <link rel="stylesheet" href="static/css/header.css">
+    <link rel="stylesheet" href="static/css/footer.css">
+    <link rel="stylesheet" href="static/css/list_grid.css">
+    <link rel="stylesheet" href="static/css/login.css">
+    <link rel="stylesheet" href="static/css/style.homepage.css">
+    <link rel="stylesheet" href="static/css/show_details.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  </head>
+
+  <body>
+
+    <!-- CONTENT -->
+    <div class="container">
+
+      <!-- HEADER WEBSITE -->
+      <div class="header">
+        <div class="menu">
+          <div class="logo">
+            <a href="/"><img src="static/img/logo_2.png" alt="Logo shop"></a>
+          </div>
+          <div class="menu-list">
+            <ul>
+              <li><a href="https://google.com">Quần</a></li>
+              <li><a href="https://google.com">Áo</a></li>
+              <li><a href="https://google.com">Giày</a></li>
+              <li><a href="https://google.com">Phụ kiện</a></li>
+              <li><a href="https://google.com">Khác</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="search-bar">
+          <div class="search-box">
+            <input type="text" placeholder="Tìm kiếm">
+          </div>
+          <div class="search-btn">
+            <a href="https://google.com">
+              <i class="fas fa-search" ></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="lio">
+          <div class="lio">
+            <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Đăng nhập</button>
+            <div id="id01" class="lio-modal">
+
+              <form class="lio-modal-content lio-animate" action="https://facebook.com">
+                <div>
+                  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                </div>
+
+                <div class="lio-container">
+                  <label for="uname"><b>Username</b></label>
+                  <input type="text" placeholder="Enter Username" name="uname" required>
+
+                  <label for="psw"><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password" name="psw" required>
+
+                  <button type="submit">Đăng nhập</button>
+                  <label>
+                    <input type="checkbox" checked="checked" name="remember"> Ghi nhớ đăng nhập
+                  </label>
+                </div>
+
+                <div class="lio-container" style="background-color:#f1f1f1">
+                  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="lio-cancelbtn">Cancel</button>
+                  <span class="psw">Forgot <a href="#">password?</a></span>
+                </div>
+              </form>
+            </div>
+          </div>
+          <script src="static/js/app.client.js">>
+
+          </script>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ____________  view_option  _______________ -->
+
+    <div class="bar_view">
+      <div class="container">
+        <div class="icon">
+          <a href="/list_view"><img src="/static/img/list_view.png"></a>
+          <a href="/grid_view"><img src="/static/img/grid_view.png"></a>
+        </div>
+      </div>
+    </div>
+    <!-- ____________ view_option  _______________ -->
+
+
+    <!-- ____________ show_details  _______________ -->
+      <div class="container">
+        <% for (var i = 0; i < danhsach.rows.length; i++) { %>
+          <% if(danhsach.rows[i].id_product === idx) { %>
+        <div class="_1_product">
+          <div class="_1_image">
+            <img src="<%= danhsach.rows[i].hinh_anh_san_pham%>">
+          </div>
+        </div>
+        <div class="_list_ten">
+          <h3> Tên sản phẩm: <%= danhsach.rows[i].ten_mat_hang %> </h3>
+        </div>
+        <div class="_list_id">
+          <h3> Mã sản phẩm: <%= danhsach.rows[i].id_product %> </h3>
+        </div>
+        <div class="_list_gia_tien">
+          <p>Giá: <%= danhsach.rows[i].gia_moi_san_pham %> đ </p>
+        </div>
+        <div class="_list_mo_ta">
+          <p> Mô tả sản phẩm:
+           <%= danhsach.rows[i].mo_ta_san_pham %> </p>
+        </div>
+        <div class="_so_luong">
+          <p> Số lượng: <%= danhsach.rows[i].so_luong_san_pham %></p>
+        </div>
+          <% } %>
+        <% } %>
+          <button class="button1">Thêm vào giỏ hàng</button>
+      </div> <!-- san pham-->
+
+
+  </body>
+</html>
