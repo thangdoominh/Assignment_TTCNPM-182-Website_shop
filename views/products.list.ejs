@@ -57,7 +57,11 @@
             <td>Số lượng sản phẩm</td>
             <td>Đơn giá</td>
             <td>Mô tả sản phẩm</td>
-            <td><a href="/admin/product/insert">Thêm</a></td>
+            <td>
+              <form class="button-admin" action="/admin/product/insert">
+                <button type="submit">Thêm</button>
+              </form>
+            </td>
           </tr>
 
         <% danhsach.rows.forEach(function(product){ %>
@@ -70,39 +74,12 @@
             <td><%= product.gia_moi_san_pham %></td>
             <td><%= product.mo_ta_san_pham %></td>
             <td>
-              <a href="/admin/product/edit/<%= product.id_product %>">Sửa</a> -
-              <a href="/admin/product/remove/<%= product.id_product %>">Xoá</a>
-
-
-              <!-- <div>
-                <button onclick="myFunction()">Remove</button>
-
-                <script>
-                function myFunction() {
-                  let comfirm = confirm("Press a button!");
-                  if(comfirm == true){
-                    // <a href="/admin/product/remove/<%= product.id_product %>"></a>
-                  }
-                  else {
-                    // <a href="/admin/products/list"></a>
-                  }
-                }
-                </script>
-
-                <!-- <button onclick="Remove_Product()">Remove</button>
-
-                <script>
-                function Remove_Product() {
-                  var r = confirm("Bạn có muốn xoá sản phẩm này không?");
-                  if (r == true) {
-                    <a href="/admin/product/remove/<%= product.id_product %>"></a>
-                  } else {
-                    <a href="/admin/products/list"></a>
-                  }
-                }
-                </script> -->
-
-
+              <form class="button-admin" action="/admin/product/edit/<%= product.id_product %>" style="margin-bottom: 10px;">
+                <button type="submit" style="background-color:yellow; color: black">Sửa</button>
+              </form>
+              <form class="button-admin" action="/admin/product/remove/<%= product.id_product %>" >
+                <button type="submit" style="background-color:red; color: black">Xóa</button>
+              </form>
             </td>
           </tr>
           <% }); %>

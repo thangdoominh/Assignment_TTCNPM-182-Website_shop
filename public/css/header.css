@@ -84,6 +84,20 @@
 .no-result {
   padding-left: 20px;
 }
+
+.button-admin {
+  display: inline-block;
+}
+.button-admin button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 10%;
+}
   /* display: inline-block;
 } */
 /* ------------- End search bar ------------ */
