@@ -10,9 +10,9 @@
   "author": "Do Minh Thang",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "ejs": "^2.6.1",
-    "express": "^4.16.4",
+    "express": "^4.18.2",
     "express-handlebars": "^3.0.2",
     "express-hbs": "^2.1.2",
     "handlebars": "^4.1.2",
